@@ -23,11 +23,11 @@ function Home() {
         setQuantity(quantity + 1)
         setFinalAmount(finalAmount + itemPrice)
     }
-
+    const pubKey = import.meta.env.VITE_publishable_key
     const checkout = async () => {
         try {
 
-            const stripe = await loadStripe('pk_test_51P2UV2SEGRYT9lZHg0EcsOSis0gLsLpaKIv9jGemUZuGWoVeBogRpDoBgG8k9udr3TcOZ60jG4mEIIdMYKdRux3Q00KT7sEVMV')
+            const stripe = await loadStripe(pubKey)
             const response = await fetch('http://localhost:3000/checkout', {
                 method: 'POST',
                 headers: {
