@@ -1,4 +1,5 @@
 import { useState } from "react"
+import {loadStripe} from '@stripe/stripe-js'
 
 function Home() {
 
@@ -25,6 +26,8 @@ function Home() {
 
     const checkout = async () => {
         try {
+
+            const stripe = await loadStripe('pk_test_51P2UV2SEGRYT9lZHg0EcsOSis0gLsLpaKIv9jGemUZuGWoVeBogRpDoBgG8k9udr3TcOZ60jG4mEIIdMYKdRux3Q00KT7sEVMV')
             const response = await fetch('http://localhost:3000/checkout', {
                 method: 'POST',
                 headers: {
@@ -39,7 +42,8 @@ function Home() {
                             price: itemPrice,
                             name: itemName,
                         },
-                    ]
+                    ],
+                    email:'test@gmail.com'
                 })
             })
 
@@ -75,8 +79,6 @@ function Home() {
                     </div>
                 </div>
             </div>
-
-
 
         </>
 
